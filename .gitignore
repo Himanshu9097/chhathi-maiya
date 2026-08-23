@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/*.mp4
+/*.jpg
+/*.png
+/*.jpeg
+/ChatGPT*
