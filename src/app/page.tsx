@@ -65,8 +65,8 @@ export default function Home() {
             />
 
             {/* Final Closing Screen */}
-            <section className="relative h-screen w-full flex flex-col items-center justify-center bg-brand-black z-20 font-devanagari">
-              <div className="flex flex-col gap-6 text-center max-w-3xl px-4">
+            <section className="relative min-h-[100dvh] w-full flex flex-col items-center justify-between bg-brand-black z-20 overflow-hidden">
+              <div className="flex-grow flex flex-col items-center justify-center text-center max-w-3xl px-4 font-devanagari">
                 <span className="text-4xl md:text-6xl font-bold mt-8 mb-4">छठ कोई festival नहीं है।</span>
                 <span className="text-3xl md:text-5xl font-medium mb-8">ये एक emotion है।</span>
                 
@@ -76,8 +76,14 @@ export default function Home() {
                 
                 <div className="flex flex-col gap-2 font-sans text-sm uppercase tracking-[0.3em] text-brand-offwhite/50 mt-16">
                   <span>Bihar se, dil tak.</span>
-                  <span>जय छठी मैया।</span>
                 </div>
+              </div>
+
+              {/* Spotlight Footer Text */}
+              <div className="w-full pb-10 flex justify-center items-end select-none pointer-events-none">
+                <h1 className="font-devanagari text-[18vw] md:text-[15vw] leading-[0.8] tracking-tight whitespace-nowrap spotlight-text opacity-90 mix-blend-screen">
+                  जय छठी मैया
+                </h1>
               </div>
             </section>
           </main>
