@@ -245,13 +245,15 @@ export default function UiOverlay() {
   return (
     <div className="pointer-events-none fixed inset-0 z-40 flex flex-col justify-between">
       {/* Top markers */}
-      <div className="flex justify-between p-6 md:p-10 font-sans text-xs uppercase tracking-widest text-brand-offwhite mix-blend-difference">
+      <div className="flex justify-between p-6 md:p-10 font-sans text-xs uppercase tracking-widest text-brand-offwhite mix-blend-difference relative">
         <div className="flex flex-col gap-1">
           <span>CHHATH PUJA</span>
           <span className="opacity-50">VOL. I</span>
         </div>
         <div className="flex flex-col items-end gap-2">
-          <Countdown />
+          <div className="absolute top-24 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:top-auto md:left-auto flex justify-center w-full md:w-auto">
+            <Countdown />
+          </div>
           <div className="opacity-30 tracking-[0.3em] font-sans text-[8px] md:text-[9px]">25°N / 85°E</div>
         </div>
       </div>
