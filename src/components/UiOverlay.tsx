@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
 import Countdown from "./Countdown";
 import Link from "next/link";
 
@@ -113,7 +113,9 @@ const TRACKS = [
 ];
 
 export default function UiOverlay() {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(1);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -148,30 +150,6 @@ export default function UiOverlay() {
         nextTrack();
       });
       
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch((error: any) => {
-        if (error.name !== 'AbortError') {
-          console.log("Autoplay prevented by browser:", error);
-          setIsPlaying(false);
-          
-          // Fallback: Autoplay on first user interaction if blocked
-          const handleFirstInteraction = () => {
-            if (audioRef.current) {
-              audioRef.current.play().then(() => {
-                setIsPlaying(true);
-              }).catch(() => {});
-            }
-            window.removeEventListener('click', handleFirstInteraction);
-            window.removeEventListener('scroll', handleFirstInteraction);
-            window.removeEventListener('touchstart', handleFirstInteraction);
-          };
-          
-          window.addEventListener('click', handleFirstInteraction);
-          window.addEventListener('scroll', handleFirstInteraction, { once: true });
-          window.addEventListener('touchstart', handleFirstInteraction, { once: true });
-        }
-      });
     }
 
     return () => {
@@ -230,6 +208,31 @@ export default function UiOverlay() {
         if (error.name !== 'AbortError') {
           setIsPlaying(false);
         }
+      }
+    }
+  };
+
+  const toggleMute = () => {
+    if (audioRef.current) {
+      const newMutedState = !isMuted;
+      audioRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
+      if (newMutedState) setVolume(0);
+      else setVolume(audioRef.current.volume || 1);
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Number(e.target.value);
+    setVolume(val);
+    if (audioRef.current) {
+      audioRef.current.volume = val;
+      if (val === 0) {
+        audioRef.current.muted = true;
+        setIsMuted(true);
+      } else {
+        audioRef.current.muted = false;
+        setIsMuted(false);
       }
     }
   };
@@ -314,7 +317,7 @@ export default function UiOverlay() {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-1 md:gap-2 mr-2">
+          <div className="flex items-center gap-1 md:gap-2 mr-2 md:mr-3">
             <button onClick={prevTrack} className="p-1 md:p-2 text-white/80 hover:text-white transition-colors active:scale-95">
               <SkipBack size={16} className="fill-current md:w-5 md:h-5" />
             </button>
@@ -331,6 +334,25 @@ export default function UiOverlay() {
             <button onClick={nextTrack} className="p-1 md:p-2 text-white/80 hover:text-white transition-colors active:scale-95">
               <SkipForward size={16} className="fill-current md:w-5 md:h-5" />
             </button>
+            <div className="w-[1px] h-4 bg-white/20 mx-1 hidden sm:block"></div>
+            <div className="hidden sm:flex items-center gap-1">
+              <button onClick={toggleMute} className="p-1 md:p-2 text-white/80 hover:text-white transition-colors active:scale-95">
+                {isMuted || volume === 0 ? (
+                  <VolumeX size={16} className="md:w-5 md:h-5" />
+                ) : (
+                  <Volume2 size={16} className="md:w-5 md:h-5" />
+                )}
+              </button>
+              <input 
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={isMuted ? 0 : volume}
+                onChange={handleVolumeChange}
+                className="w-12 md:w-16 h-1 bg-white/20 rounded-full appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full cursor-pointer outline-none"
+              />
+            </div>
           </div>
 
         </div>

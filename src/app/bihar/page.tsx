@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 
 export const metadata = {
   title: "The Soul of Bihar | Cultural Heritage",
@@ -42,6 +42,46 @@ export default function BiharPage() {
       {/* Content Sections */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24 space-y-32 md:space-y-48">
         
+        {/* External Links Section */}
+        <section className="flex flex-col items-center justify-center space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="text-sm md:text-base font-mono tracking-[0.2em] opacity-50 uppercase">Discover More</h2>
+            <h3 className="font-devanagari text-2xl md:text-4xl font-bold">Official Resources</h3>
+          </div>
+          
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full max-w-4xl justify-center">
+            <a 
+              href="https://tourism.bihar.gov.in/en/video-gallery" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-between px-6 py-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 transition-all duration-300 w-full md:w-1/3"
+            >
+              <span className="font-sans text-sm tracking-wide group-hover:text-white text-white/80 transition-colors">Video Gallery</span>
+              <ExternalLink size={16} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+            </a>
+
+            <a 
+              href="https://tourism.bihar.gov.in/en/experiences?sectionId=section-0" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-between px-6 py-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 transition-all duration-300 w-full md:w-1/3"
+            >
+              <span className="font-sans text-sm tracking-wide group-hover:text-white text-white/80 transition-colors">Experiences</span>
+              <ExternalLink size={16} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+            </a>
+
+            <a 
+              href="https://tourism.bihar.gov.in/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-between px-6 py-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 transition-all duration-300 w-full md:w-1/3"
+            >
+              <span className="font-sans text-sm tracking-wide group-hover:text-white text-white/80 transition-colors">Official Tourism</span>
+              <ExternalLink size={16} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+            </a>
+          </div>
+        </section>
+
         {/* Nalanda - History */}
         <section className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
           <div className="order-2 md:order-1 space-y-6">
@@ -107,6 +147,8 @@ export default function BiharPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 to-transparent" />
           </div>
         </section>
+
+
 
       </div>
       
