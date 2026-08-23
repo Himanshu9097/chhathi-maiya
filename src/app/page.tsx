@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Loader from "@/components/Loader";
 import SmoothScroll from "@/components/SmoothScroll";
-import Cursor from "@/components/Cursor";
+
 import UiOverlay from "@/components/UiOverlay";
 import Hero from "@/components/Hero";
 import ImageChapter from "@/components/ImageChapter";
@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <>
-      <Cursor />
+
       {loading ? (
         <Loader onComplete={() => setLoading(false)} />
       ) : (

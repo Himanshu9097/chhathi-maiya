@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
 import Countdown from "./Countdown";
+import Link from "next/link";
 
 const TRACKS = [
   {
@@ -118,8 +119,16 @@ export default function UiOverlay() {
   const [duration, setDuration] = useState(0);
   
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    // Scroll listener to hide countdown on mobile when scrolling down
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
     // Create audio element if it doesn't exist
     if (!audioRef.current) {
       const audio = new Audio(TRACKS[0].src);
@@ -166,7 +175,7 @@ export default function UiOverlay() {
     }
 
     return () => {
-      // Cleanup happens on unmount
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []); // Run once on mount
 
@@ -250,11 +259,16 @@ export default function UiOverlay() {
           <span>CHHATH PUJA</span>
           <span className="opacity-50">VOL. I</span>
         </div>
-        <div className="flex flex-col items-end gap-2">
-          <div className="absolute top-24 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:top-auto md:left-auto flex justify-center w-full md:w-auto">
+        <div className="flex flex-col items-end gap-2 pointer-events-auto">
+          <div className={`absolute top-24 left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:top-auto md:left-auto flex justify-center w-full md:w-auto transition-opacity duration-700 ${isScrolled ? 'opacity-0 md:opacity-100 pointer-events-none' : 'opacity-100'}`}>
             <Countdown />
           </div>
-          <div className="opacity-30 tracking-[0.3em] font-sans text-[8px] md:text-[9px]">25°N / 85°E</div>
+          <Link href="/bihar" className="group flex flex-col items-end gap-1 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer">
+            <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md group-hover:bg-white/10 group-hover:border-white/40 transition-all shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+              <span className="tracking-[0.3em] font-sans text-[9px] md:text-[10px] text-white">25°N / 85°E</span>
+            </div>
+            <span className="text-[7px] md:text-[8px] uppercase tracking-[0.2em] text-white/50 group-hover:text-white/80 transition-colors mr-2">Explore Bihar</span>
+          </Link>
         </div>
       </div>
 
