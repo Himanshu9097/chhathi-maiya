@@ -71,9 +71,9 @@ export default function ImageChapter({
     <div
       id={id}
       ref={containerRef}
-      className={`relative w-full ${isFinal ? "h-[100vh]" : "h-[200vh]"}`}
+      className={`relative w-full ${isFinal ? "h-[100dvh]" : "h-[200dvh]"}`}
     >
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-brand-black">
+      <div className="sticky top-0 left-0 w-full h-[100dvh] overflow-hidden bg-brand-black">
         <Image
           ref={imageRef}
           src={imageSrc}

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen bg-brand-black overflow-hidden">
+    <section className="relative w-full h-[100dvh] bg-brand-black overflow-hidden">
       {/* PC Image */}
       <div className="hidden md:block absolute inset-0">
         <Image

@@ -142,9 +142,9 @@ export default function FrameScrollChapter({
     <div
       id={id}
       ref={containerRef}
-      className={`relative w-full ${isFinal ? "h-[300vh]" : "h-[600vh]"}`} 
+      className={`relative w-full ${isFinal ? "h-[300dvh]" : "h-[600dvh]"}`}
     >
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-brand-black">
+      <div className="sticky top-0 left-0 w-full h-[100dvh] overflow-hidden bg-brand-black">
         <canvas
           ref={canvasRef}
           className="w-full h-full opacity-80 mix-blend-screen"

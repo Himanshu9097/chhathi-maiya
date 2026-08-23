@@ -257,8 +257,8 @@ export default function UiOverlay() {
       </div>
 
       {/* Floating Center Audio Player */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-auto">
-        <div className="w-[340px] md:w-[480px] h-20 md:h-24 bg-gradient-to-r from-[#5a3a31]/80 to-[#4a2e26]/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center px-2 md:px-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 pointer-events-auto w-[92vw] sm:w-[340px] md:w-[480px] flex justify-center">
+        <div className="w-full h-20 md:h-24 bg-gradient-to-r from-[#5a3a31]/80 to-[#4a2e26]/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center px-2 md:px-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
           
           {/* Vinyl Album Art */}
           <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
@@ -304,7 +304,7 @@ export default function UiOverlay() {
             </button>
             <button 
               onClick={togglePlay}
-              className="w-8 h-8 md:w-11 md:h-11 bg-white rounded-full flex items-center justify-center text-[#4a2e26] hover:scale-105 active:scale-95 transition-all shadow-lg"
+              className="w-8 h-8 md:w-11 md:h-11 bg-white rounded-full flex items-center justify-center text-[#4a2e26] hover:scale-105 active:scale-95 transition-all shadow-lg shrink-0"
             >
               {isPlaying ? (
                 <Pause size={16} className="fill-current md:w-5 md:h-5 ml-[1px]" />
@@ -325,7 +325,7 @@ export default function UiOverlay() {
         href="https://open.spotify.com/search/chhath%20puja/playlists"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute bottom-14 md:bottom-20 right-6 md:right-10 pointer-events-auto opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2 text-[#1ED760]"
+        className="absolute bottom-[110px] md:bottom-20 right-4 md:right-10 pointer-events-auto opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2 text-[#1ED760]"
       >
         <span className="font-sans text-[9px] tracking-[0.2em] uppercase hidden md:inline text-brand-offwhite">Listen on Spotify</span>
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">

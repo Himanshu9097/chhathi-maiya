@@ -67,10 +67,10 @@ export default function Home() {
             {/* Final Closing Screen */}
             <section className="relative min-h-[100dvh] w-full flex flex-col items-center justify-between bg-brand-black z-20 overflow-hidden">
               <div className="flex-grow flex flex-col items-center justify-center text-center max-w-3xl px-4 font-devanagari">
-                <span className="text-4xl md:text-6xl font-bold mt-8 mb-4">छठ कोई festival नहीं है।</span>
-                <span className="text-3xl md:text-5xl font-medium mb-8">ये एक emotion है।</span>
+                <span className="text-3xl md:text-6xl font-bold mt-8 mb-4">छठ कोई festival नहीं है।</span>
+                <span className="text-2xl md:text-5xl font-medium mb-8">ये एक emotion है।</span>
                 
-                <span className="text-lg md:text-2xl opacity-80 mt-8 leading-relaxed">
+                <span className="text-base md:text-2xl opacity-80 mt-8 leading-relaxed px-2">
                   कुछ रिश्ते, कुछ यादें और एक सूरज —<br/>हर साल हमें वापस बुलाता है।
                 </span>
                 
