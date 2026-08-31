@@ -114,9 +114,18 @@ const TRACKS = [
 
 export default function UiOverlay() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const isPlayingRef = useRef(isPlaying);
+  
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
+  
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const trackIndexRef = useRef(currentTrackIndex);
+
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+    trackIndexRef.current = currentTrackIndex;
+  }, [isPlaying, currentTrackIndex]);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
@@ -167,7 +176,7 @@ export default function UiOverlay() {
     audioRef.current.src = TRACKS[index].src;
     audioRef.current.load(); // Force preload
     
-    if (isPlaying) {
+    if (isPlayingRef.current) {
       try {
         await audioRef.current.play();
       } catch (error: any) {
@@ -180,25 +189,21 @@ export default function UiOverlay() {
   };
 
   const nextTrack = () => {
-    setCurrentTrackIndex((prev) => {
-      const nextIdx = (prev + 1) % TRACKS.length;
-      loadAndPlayTrack(nextIdx);
-      return nextIdx;
-    });
+    const nextIdx = (trackIndexRef.current + 1) % TRACKS.length;
+    setCurrentTrackIndex(nextIdx);
+    loadAndPlayTrack(nextIdx);
   };
 
   const prevTrack = () => {
-    setCurrentTrackIndex((prev) => {
-      const nextIdx = (prev - 1 + TRACKS.length) % TRACKS.length;
-      loadAndPlayTrack(nextIdx);
-      return nextIdx;
-    });
+    const nextIdx = (trackIndexRef.current - 1 + TRACKS.length) % TRACKS.length;
+    setCurrentTrackIndex(nextIdx);
+    loadAndPlayTrack(nextIdx);
   };
 
   const togglePlay = async () => {
     if (!audioRef.current) return;
     
-    if (isPlaying) {
+    if (isPlayingRef.current) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
