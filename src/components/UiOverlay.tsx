@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Repeat } from "lucide-react";
 import Countdown from "./Countdown";
 import Link from "next/link";
 
@@ -119,6 +119,7 @@ export default function UiOverlay() {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isLooping, setIsLooping] = useState(false);
   
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -219,6 +220,14 @@ export default function UiOverlay() {
       setIsMuted(newMutedState);
       if (newMutedState) setVolume(0);
       else setVolume(audioRef.current.volume || 1);
+    }
+  };
+
+  const toggleLoop = () => {
+    if (audioRef.current) {
+      const newLoopState = !isLooping;
+      audioRef.current.loop = newLoopState;
+      setIsLooping(newLoopState);
     }
   };
 
@@ -333,6 +342,9 @@ export default function UiOverlay() {
             </button>
             <button onClick={nextTrack} className="p-1 md:p-2 text-white/80 hover:text-white transition-colors active:scale-95">
               <SkipForward size={16} className="fill-current md:w-5 md:h-5" />
+            </button>
+            <button onClick={toggleLoop} title="Toggle Loop" className={`p-1 md:p-2 transition-colors active:scale-95 ${isLooping ? 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]' : 'text-white/50 hover:text-white/80'}`}>
+              <Repeat size={16} className="md:w-4 md:h-4" />
             </button>
             <div className="w-[1px] h-4 bg-white/20 mx-1 hidden sm:block"></div>
             <div className="hidden sm:flex items-center gap-1">
