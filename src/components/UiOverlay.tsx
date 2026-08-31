@@ -285,7 +285,7 @@ export default function UiOverlay() {
       </div>
 
       {/* Floating Center Audio Player */}
-      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 pointer-events-auto w-[92vw] sm:w-[340px] md:w-[480px] flex justify-center">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 pointer-events-auto w-[95vw] sm:w-[500px] md:w-[600px] flex justify-center">
         <div className="w-full h-20 md:h-24 bg-gradient-to-r from-[#5a3a31]/80 to-[#4a2e26]/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center px-2 md:px-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
           
           {/* Vinyl Album Art */}
@@ -320,13 +320,13 @@ export default function UiOverlay() {
                 className="w-full h-1 bg-white/20 rounded-full appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full cursor-pointer outline-none"
               />
             </div>
-            <div className="text-[9px] md:text-[10px] text-white/50 mt-1 font-mono tracking-wider">
+            <div className="text-[9px] md:text-[10px] text-white/50 mt-1 font-mono tracking-wider whitespace-nowrap">
               {formatTime(progress)} / {formatTime(duration)}
             </div>
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-1 md:gap-2 mr-2 md:mr-3">
+          <div className="flex items-center gap-1 md:gap-2 mr-2 md:mr-3 shrink-0">
             <button onClick={prevTrack} className="p-1 md:p-2 text-white/80 hover:text-white transition-colors active:scale-95">
               <SkipBack size={16} className="fill-current md:w-5 md:h-5" />
             </button>
